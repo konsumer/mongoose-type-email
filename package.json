@@ -1,0 +1,33 @@
+{
+  "name": "mongoose-type-email",
+  "version": "1.0.0",
+  "description": "An email field-type for Mongoose schemas",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "mocha -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/konsumer/mongoose-type-email.git"
+  },
+  "keywords": [
+    "mongoose",
+    "types",
+    "email",
+    "schema"
+  ],
+  "author": "David Konsumer <konsumer@jetboystudio.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/konsumer/mongoose-type-email/issues"
+  },
+  "homepage": "https://github.com/konsumer/mongoose-type-email",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  },
+  "dependencies": {
+    "mongoose": "^3.8.x"
+  }
+}
