@@ -36,3 +36,12 @@ var UserSchema = new mongoose.Schema({
     }
 });
 ```
+
+You can also use it as an array:
+
+
+```javascript
+var UserSchema = new mongoose.Schema({
+    emails: [{type: mongoose.SchemaTypes.Email}]
+});
+```
