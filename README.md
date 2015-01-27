@@ -18,10 +18,10 @@ This will validate email, correctly:
 var mongoose = require('mongoose');
 require('mongoose-type-email');
 
-var UserSchema = new Schema({
+var UserSchema = new mongoose.Schema({
     email: {
-        work: Email,
-        home: Email
+        work: mongoose.SchemaTypes.Email,
+        home: mongoose.SchemaTypes.Email
     }
 });
 ```
@@ -29,10 +29,10 @@ var UserSchema = new Schema({
 You can also use the stuff in `String` type:
 
 ```javascript
-var UserSchema = new Schema({
+var UserSchema = new mongoose.Schema({
     email: {
-        work: {type: Email, required: true},
-        home: {type: Email, required: true},
+        work: {type: mongoose.SchemaTypes.Email, required: true},
+        home: {type: mongoose.SchemaTypes.Email, required: true},
     }
 });
 ```

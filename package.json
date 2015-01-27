@@ -4,8 +4,7 @@
   "description": "An email field-type for Mongoose schemas",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "start": "mocha -w"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -25,7 +24,8 @@
   "homepage": "https://github.com/konsumer/mongoose-type-email",
   "devDependencies": {
     "chai": "^1.10.0",
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
+    "mockgoose": "^1.10.7"
   },
   "dependencies": {
     "mongoose": "^3.8.x"
