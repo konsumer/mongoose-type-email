@@ -15,5 +15,5 @@ Email.prototype.cast = function (val) {
 	return val.toLowerCase();
 };
 
-mongoose.SchemaTypes.Email = Email;
+mongoose.SchemaTypes.Email = module.exports = Email;
 mongoose.Types.Email = String;
