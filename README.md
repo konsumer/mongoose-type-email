@@ -12,7 +12,7 @@ This will validate email, correctly:
 
 ```
 var mongoose = require('mongoose');
-require('mongoose-type-email');
+require('mongoose-type-email')(mongoose);
 
 var UserSchema = new mongoose.Schema({
     email: {
