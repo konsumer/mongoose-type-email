@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 var mongoose = require('mongoose');
-require('../');
+require('../')(mongoose);
 
 require('mockgoose')(mongoose);
 

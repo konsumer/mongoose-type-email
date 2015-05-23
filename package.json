@@ -1,6 +1,6 @@
 {
   "name": "mongoose-type-email",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "An email field-type for Mongoose schemas",
   "main": "index.js",
   "scripts": {
@@ -25,9 +25,7 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "mocha": "^2.1.0",
-    "mockgoose": "^1.10.7"
-  },
-  "dependencies": {
+    "mockgoose": "^1.10.7",
     "mongoose": "^3.8.x"
   }
 }
