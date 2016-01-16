@@ -25,9 +25,10 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "mocha": "^2.1.0",
-    "mockgoose": "^1.10.7"
+    "mockgoose": "^1.10.7",
+    "mongoose": "^4.3.5"
   },
-  "dependencies": {
-    "mongoose": "^3.8.x"
+  "peerDependencies": {
+    "mongoose": "^4.3.5"
   }
 }
