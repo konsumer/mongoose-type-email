@@ -41,3 +41,16 @@ var UserSchema = new mongoose.Schema({
     emails: [{type: mongoose.SchemaTypes.Email}]
 });
 ```
+
+You can add 'allowBlank: true' in order to allow empty string ('') when the field is not required
+```
+var mongoose = require('mongoose');
+require('mongoose-type-email');
+
+var UserSchema = new mongoose.Schema({
+    email: {
+        work: { type: mongoose.SchemaTypes.Email, allowBlank: true }, // allows '' as a value
+        home: mongoose.SchemaTypes.Email // throws when the value is ''
+    }
+});
+```
