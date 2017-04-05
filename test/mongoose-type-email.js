@@ -29,10 +29,11 @@ var UserNested = mongoose.model('UserNested', new mongoose.Schema({
 describe('mongoose-type-email', function(){
 	before(function(done){
 		mockgoose.prepareStorage().then(function() {
-			mongoose.connect('mongodb://localhost/test', function(err) {
-				done(err);
-			});
+		mongoose.connect('mongodb://example.com/TestingDB', function(err) {
+			if (err) done(err);
+			done();
 		});
+	});
 		mongoose.connection.on('error', function(){});
 	});
 
