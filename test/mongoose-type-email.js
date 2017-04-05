@@ -28,7 +28,7 @@ var UserNested = mongoose.model('UserNested', new mongoose.Schema({
 
 describe('mongoose-type-email', function(){
 	before(function(done){
-		this.timeout(5000)
+		this.timeout(0)
 		mockgoose.prepareStorage().then(function() {
 		mongoose.connect('mongodb://example.com/TestingDB', function(err) {
 			if (err) done(err);
