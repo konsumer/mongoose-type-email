@@ -10,7 +10,7 @@ An email field-type for Mongoose schemas
 
 This will validate email, correctly:
 
-```
+```js
 var mongoose = require('mongoose');
 require('mongoose-type-email');
 
@@ -24,7 +24,7 @@ var UserSchema = new mongoose.Schema({
 
 You can also use the stuff in `String` type:
 
-```javascript
+```js
 var UserSchema = new mongoose.Schema({
     email: {
         work: {type: mongoose.SchemaTypes.Email, required: true},
@@ -36,14 +36,15 @@ var UserSchema = new mongoose.Schema({
 You can also use it as an array:
 
 
-```javascript
+```js
 var UserSchema = new mongoose.Schema({
     emails: [{type: mongoose.SchemaTypes.Email}]
 });
 ```
 
 You can add 'allowBlank: true' in order to allow empty string ('') when the field is not required
-```
+
+```js
 var mongoose = require('mongoose');
 require('mongoose-type-email');
 
