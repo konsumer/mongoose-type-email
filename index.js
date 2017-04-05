@@ -3,12 +3,13 @@ var mongoose = require('mongoose');
 function Email (path, options) {
 	mongoose.SchemaTypes.String.call(this, path, options);
 	function validateEmail (val) {
-		if (options.allowBlank && val === '' && !options.required) {
-			return true
+		var required = (typeof options.required === 'function') ? options.required() : options.required;
+		if (options.allowBlank && val === '' && !required) {
+			return true;
 		}
 
 		// http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
-		return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(val)
+		return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(val);
 	}
 	this.validate(validateEmail, 'invalid email address');
 }
