@@ -2,7 +2,8 @@ var expect = require('chai').expect;
 var mongoose = require('mongoose');
 require('../');
 
-require('mockgoose')(mongoose);
+var Mockgoose = require('mockgoose').Mockgoose;
+var mockgoose = new Mockgoose(mongoose);
 
 mongoose.Promise = Promise;
 
@@ -27,9 +28,12 @@ var UserNested = mongoose.model('UserNested', new mongoose.Schema({
 
 describe('mongoose-type-email', function(){
 	before(function(done){
-		mongoose.connect('mongodb://localhost/test');
+		mockgoose.prepareStorage().then(function() {
+			mongoose.connect('mongodb://localhost/test', function(err) {
+				done(err);
+			});
+		});
 		mongoose.connection.on('error', function(){});
-		mongoose.connection.once('open', done);
 	});
 
 	after(function(){
