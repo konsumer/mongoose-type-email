@@ -4,7 +4,8 @@ function Email (path, options) {
 	mongoose.SchemaTypes.String.call(this, path, options);
 	function validateEmail (val) {
 		var required = (typeof options.required === 'function') ? options.required() : options.required;
-		if (options.allowBlank && val === '' && !required) {
+    var passedAllowBlank = options.allowBlank && (val === '' || val === null)
+		if (passedAllowBlank && !required) {
 			return true;
 		}
 

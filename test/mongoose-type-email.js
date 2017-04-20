@@ -56,9 +56,15 @@ describe('mongoose-type-email', function(){
 		});
 	});
 
-	it('should enable blank value when stated', function(done){
+	it('should enable an empty string value when allowBlank', function(done){
 		var user =  new UserAllowBlank();
 		user.email = '';
+		user.save(done);
+	});
+
+	it('should enable a null value when allowBlank', function(done){
+		var user =  new UserAllowBlank();
+		user.email = null;
 		user.save(done);
 	});
 
