@@ -26,6 +26,10 @@ var UserNested = mongoose.model('UserNested', new mongoose.Schema({
 	}
 }));
 
+var UserCustomMessage = mongoose.model('UserCustomMessage', new mongoose.Schema({
+	email: { type: mongoose.SchemaTypes.Email, message: 'error.email' }
+}));
+
 describe('mongoose-type-email', function(){
 	before(function(done){
 		this.timeout(0)
@@ -81,6 +85,15 @@ describe('mongoose-type-email', function(){
 		user.validate(function(err){
 			expect(err.errors['email.home'].message).to.equal('Path `email.home` is required.');
 			expect(err.errors['email.work'].message).to.equal('Path `email.work` is required.');
+			done();
+		});
+	});
+
+	it('should not enable blank value with custom message', function(done){
+		var user =  new UserCustomMessage();
+		user.email = '';
+		user.validate(function(err){
+			expect(err.errors.email.message).to.equal('error.email');
 			done();
 		});
 	});
