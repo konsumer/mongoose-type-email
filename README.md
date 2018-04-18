@@ -1,5 +1,7 @@
 # mongoose-type-email
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/konsumer/mongoose-type-email.svg)](https://greenkeeper.io/)
+
 An email field-type for Mongoose schemas
 
 [![npm](https://nodei.co/npm/mongoose-type-email.png)](https://www.npmjs.com/package/mongoose-type-email)
