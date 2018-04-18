@@ -24,11 +24,11 @@
   },
   "homepage": "https://github.com/konsumer/mongoose-type-email",
   "devDependencies": {
-    "chai": "^1.10.0",
-    "mocha": "^2.1.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.1.0",
     "mockgoose": "",
     "mongoose": "",
-    "release-it": "^2.5.4"
+    "release-it": "^7.4.1"
   },
   "peerDependencies": {
     "mongoose": ""
