@@ -1,25 +1,25 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 function Email (path, options) {
-	mongoose.SchemaTypes.String.call(this, path, options);
-	function validateEmail (val) {
-		var required = (typeof options.required === 'function') ? options.required() : options.required;
+  mongoose.SchemaTypes.String.call(this, path, options)
+  function validateEmail (val) {
+    var required = (typeof options.required === 'function') ? options.required() : options.required
     var passedAllowBlank = options.allowBlank && (val === '' || val === null)
-		if (passedAllowBlank && !required) {
-			return true;
-		}
+    if (passedAllowBlank && !required) {
+      return true
+    }
 
-		// http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
-		return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(val);
-	}
-	this.validate(validateEmail, options.message || 'invalid email address');
+    // http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
+    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(val)
+  }
+  this.validate(validateEmail, options.message || 'invalid email address')
 }
 
-Email.prototype.__proto__ = mongoose.SchemaTypes.String.prototype;
+Email.prototype.__proto__ = mongoose.SchemaTypes.String.prototype
 
 Email.prototype.cast = function (val) {
-	return val.toLowerCase();
-};
+  return val.toLowerCase()
+}
 
-mongoose.SchemaTypes.Email = module.exports = Email;
-mongoose.Types.Email = String;
+mongoose.SchemaTypes.Email = module.exports = Email
+mongoose.Types.Email = String
