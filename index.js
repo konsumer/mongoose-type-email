@@ -1,21 +1,23 @@
 var mongoose = require('mongoose')
 
-function Email (path, options) {
-  mongoose.SchemaTypes.String.call(this, path, options)
-  function validateEmail (val) {
-    var required = (typeof options.required === 'function') ? options.required() : options.required
-    var passedAllowBlank = options.allowBlank && (val === '' || val === null)
-    if (passedAllowBlank && !required) {
-      return true
-    }
+// http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
+var regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
-    // http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
-    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(val)
+function validateEmail (val, options) {
+  var required = (typeof options.required === 'function') ? options.required() : options.required
+  var passedAllowBlank = options.allowBlank && (val === '' || val === null)
+  if (passedAllowBlank && !required) {
+    return true
   }
-  this.validate(validateEmail, options.message || 'invalid email address')
+  return regEmail.test(val)
 }
 
-Email.prototype.__proto__ = mongoose.SchemaTypes.String.prototype
+function Email (path, options) {
+  mongoose.SchemaTypes.String.call(this, path, options)
+  this.validate(function (val) { return validateEmail(val, options) }, options.message || 'invalid email address')
+}
+
+Object.setPrototypeOf(Email.prototype, mongoose.SchemaTypes.String.prototype)
 
 Email.prototype.cast = function (val) {
   return val.toLowerCase()
