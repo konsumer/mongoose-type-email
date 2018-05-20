@@ -1,5 +1,5 @@
 /* global describe, it, expect */
-const mockingoose = require('mockingoose').default
+require('mockingoose')
 var mongoose = require('mongoose')
 require('../')
 
