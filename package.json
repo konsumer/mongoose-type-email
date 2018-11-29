@@ -30,6 +30,6 @@
     "jest": "^22.4.4"
   },
   "peerDependencies": {
-    "mongoose": ""
+    "mongoose": "*"
   }
 }
