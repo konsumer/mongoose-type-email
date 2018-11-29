@@ -1,6 +1,6 @@
 {
   "name": "mongoose-type-email",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "An email field-type for Mongoose schemas",
   "main": "index.js",
   "scripts": {
