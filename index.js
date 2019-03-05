@@ -13,6 +13,8 @@ function validateEmail (val, options) {
 }
 
 function Email (path, options) {
+  this.options = options;
+  this.path = path;
   mongoose.SchemaTypes.String.call(this, path, options)
   this.validate(function (val) { return validateEmail(val, options) }, options.message || 'invalid email address')
 }
@@ -22,6 +24,14 @@ Object.setPrototypeOf(Email.prototype, mongoose.SchemaTypes.String.prototype)
 Email.prototype.cast = function (val) {
   return val.toLowerCase()
 }
+
+Email.prototype.get = function (val) {
+    return val.toLowerCase()
+}
+
+Email.prototype.checkRequired = function (val) {
+    return typeof val === 'string' && validateEmail(val, this.options);
+};
 
 mongoose.SchemaTypes.Email = module.exports = Email
 mongoose.Types.Email = String
