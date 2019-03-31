@@ -26,7 +26,7 @@
   "devDependencies": {
     "mongoose": "^5.3.14",
     "release-it": "^8.2.0",
-    "mockingoose": "^2.9.1",
+    "mockingoose": "2.12.0",
     "jest": "^22.4.4"
   },
   "peerDependencies": {
