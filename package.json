@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/konsumer/mongoose-type-email",
   "devDependencies": {
-    "mongoose": "^5.3.14",
+    "mongoose": "^5.5.2",
     "release-it": "^8.2.0",
     "mockingoose": "^2.9.1",
     "jest": "^22.4.4"
