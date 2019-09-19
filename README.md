@@ -57,3 +57,18 @@ var UserSchema = new mongoose.Schema({
     }
 });
 ```
+
+You can specify a default custom error message by overriding `mongoose.SchemaTypes.Email.defaults.message`
+
+```js
+var mongoose = require('mongoose');
+require('mongoose-type-email');
+mongoose.SchemaTypes.Email.defaults.message = 'Email address is invalid'
+
+var UserSchema = new mongoose.Schema({
+    email: {
+        work: mongoose.SchemaTypes.Email,
+        home: mongoose.SchemaTypes.Email
+    }
+});
+```
