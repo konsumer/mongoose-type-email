@@ -16,8 +16,10 @@ function Email (path, options) {
   this.options = options;
   this.path = path;
   mongoose.SchemaTypes.String.call(this, path, options)
-  this.validate(function (val) { return validateEmail(val, options) }, options.message || 'invalid email address')
+  this.validate(function (val) { return validateEmail(val, options) }, options.message || Email.defaults.message || 'invalid email address')
 }
+
+Email.defaults = {}
 
 Object.setPrototypeOf(Email.prototype, mongoose.SchemaTypes.String.prototype)
 
