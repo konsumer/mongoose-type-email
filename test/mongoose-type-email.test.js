@@ -80,4 +80,27 @@ describe('mongoose-type-email', function () {
       done()
     })
   })
+
+  describe('Default error message', () => {
+    var UserDefaultCustomMessage;
+    beforeAll(() => {
+      mongoose.SchemaTypes.Email.defaults.message = 'Email address is invalid'
+      UserDefaultCustomMessage = mongoose.model('UserDefaultCustomMessage', new mongoose.Schema({
+        email: { type: mongoose.SchemaTypes.Email }
+      }))
+    })
+
+    afterAll(() => {
+      delete mongoose.SchemaTypes.Email.defaults.message
+    })
+
+    it('should not enable blank value with custom default message', function (done) {
+      var user = new UserDefaultCustomMessage();
+      user.email = ''
+      user.validate(function (err) {
+        expect(err.errors.email.message).toEqual('Email address is invalid')
+        done()
+      })
+    })
+  })
 })
