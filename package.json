@@ -27,13 +27,10 @@
     "jest": "^24.7.1",
     "mockingoose": "^2.9.1",
     "mongoose": "^5.8.3",
-    "release-it": "^12.4.3"
+    "release-it": "^14.0.3"
   },
   "peerDependencies": {
     "mongoose": "*"
-  },
-  "dependencies": {
-    "cryptiles": "^4.1.2"
   },
   "jest": {
     "testEnvironment": "node"
