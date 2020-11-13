@@ -2,11 +2,9 @@
 
 An email field-type for Mongoose schemas
 
-[![npm](https://nodei.co/npm/mongoose-type-email.png)](https://www.npmjs.com/package/mongoose-type-email)
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/konsumer/mongoose-type-email.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.org/konsumer/mongoose-type-email.svg?branch=master)](https://travis-ci.org/konsumer/mongoose-type-email)
 [![Code Climate](https://codeclimate.com/github/konsumer/mongoose-type-email/badges/gpa.svg)](https://codeclimate.com/github/konsumer/mongoose-type-email)
+
+[![npm](https://nodei.co/npm/mongoose-type-email.png)](https://www.npmjs.com/package/mongoose-type-email)
 
 ## usage
 
