@@ -72,3 +72,14 @@ var UserSchema = new mongoose.Schema({
     }
 });
 ```
+
+By default, this library follows the same validation you see in the [html spec for `type=email`](https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address) which allows local email addresses, and other non-standard email types. If you want more complete TLD validation (eg `user@host.com`) you can use the `correctTld` options:
+
+```js
+var UserSchema = new mongoose.Schema({
+    email: {
+        work: {type: mongoose.SchemaTypes.Email, correctTld: true},
+        home: {type: mongoose.SchemaTypes.Email, correctTld: true},
+    }
+});
+```
