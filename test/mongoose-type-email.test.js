@@ -1,4 +1,4 @@
-/* global describe, it, expect */
+/* global describe, it, expect, beforeAll, afterAll */
 require('mockingoose')
 var mongoose = require('mongoose')
 require('../')
@@ -14,18 +14,22 @@ var UserAllowBlank = mongoose.model('UserAllowBlank', new mongoose.Schema({
 }))
 
 var UserRequired = mongoose.model('UserRequired', new mongoose.Schema({
-  email: {type: mongoose.SchemaTypes.Email, required: true}
+  email: { type: mongoose.SchemaTypes.Email, required: true }
 }))
 
 var UserNested = mongoose.model('UserNested', new mongoose.Schema({
   email: {
-    work: {type: mongoose.SchemaTypes.Email, required: true},
-    home: {type: mongoose.SchemaTypes.Email, required: true}
+    work: { type: mongoose.SchemaTypes.Email, required: true },
+    home: { type: mongoose.SchemaTypes.Email, required: true }
   }
 }))
 
 var UserCustomMessage = mongoose.model('UserCustomMessage', new mongoose.Schema({
   email: { type: mongoose.SchemaTypes.Email, message: 'error.email' }
+}))
+
+var UserTld = mongoose.model('UserTld', new mongoose.Schema({
+  email: { type: mongoose.SchemaTypes.Email, correctTld: true }
 }))
 
 describe('mongoose-type-email', function () {
@@ -82,7 +86,7 @@ describe('mongoose-type-email', function () {
   })
 
   describe('Default error message', () => {
-    var UserDefaultCustomMessage;
+    var UserDefaultCustomMessage
     beforeAll(() => {
       mongoose.SchemaTypes.Email.defaults.message = 'Email address is invalid'
       UserDefaultCustomMessage = mongoose.model('UserDefaultCustomMessage', new mongoose.Schema({
@@ -95,10 +99,19 @@ describe('mongoose-type-email', function () {
     })
 
     it('should not enable blank value with custom default message', function (done) {
-      var user = new UserDefaultCustomMessage();
+      var user = new UserDefaultCustomMessage()
       user.email = ''
       user.validate(function (err) {
         expect(err.errors.email.message).toEqual('Email address is invalid')
+        done()
+      })
+    })
+
+    it('should require correct tld', function (done) {
+      var user = new UserTld()
+      user.email = 'hansvon@vermine'
+      user.validate(function (err) {
+        expect(err.errors.email.message).toEqual('invalid email address')
         done()
       })
     })

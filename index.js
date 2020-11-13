@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+var isEmail = require('validator/lib/isEmail')
 
 // http://www.w3.org/TR/html5/forms.html#valid-e-mail-address
 var regEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
@@ -9,12 +10,12 @@ function validateEmail (val, options) {
   if (passedAllowBlank && !required) {
     return true
   }
-  return regEmail.test(val)
+  return options.correctTld ? isEmail(val) : regEmail.test(val)
 }
 
 function Email (path, options) {
-  this.options = options;
-  this.path = path;
+  this.options = options
+  this.path = path
   mongoose.SchemaTypes.String.call(this, path, options)
   this.validate(function (val) { return validateEmail(val, options) }, options.message || Email.defaults.message || 'invalid email address')
 }
@@ -28,12 +29,12 @@ Email.prototype.cast = function (val) {
 }
 
 Email.prototype.get = function (val) {
-    return val.toLowerCase()
+  return val.toLowerCase()
 }
 
 Email.prototype.checkRequired = function (val) {
-    return typeof val === 'string' && validateEmail(val, this.options);
-};
+  return typeof val === 'string' && validateEmail(val, this.options)
+}
 
 mongoose.SchemaTypes.Email = module.exports = Email
 mongoose.Types.Email = String
